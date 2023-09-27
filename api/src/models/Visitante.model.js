@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const visitanteSchema = new mongoose.Schema({
   nombre: String,
-  apellido: String,
   vinculo: String,
   fecha_de_visita: String,
   hora_de_visita: String,
