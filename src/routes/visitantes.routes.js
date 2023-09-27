@@ -13,14 +13,27 @@ visitantesRouter.get("/", async (req, res) => {
 
 visitantesRouter.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    let {
+      nombre,
+      apellido,
+      fecha_de_visita,
+      email,
+      celular,
+      hora_de_visita,
+      vinculo,
+      nombre_del_residente,
+    } = req.body;
+
+    if(!nombre || !apellido || !fecha_de_visita || !email || !celular || !hora_de_visita || !vinculo || !nombre_del_residente ){
+      throw new Error(`Data required to create the Visitor in D.B. are missing`)
+    }
 
     const newVisitante = new visitanteModel(req.body);
     await newVisitante.save();
     res.json({
       msj: "Successful User addition",
       id: newVisitante._id,
-      name: newVisitante.name,
+      name: newVisitante.nombre,
     });
   } catch (e) {
     res.status(400).json({ error: e, message: e.message });
