@@ -1,36 +1,26 @@
 import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import QRCode from "react-qr-code";
-import './App.css'
+import './css/App.css'
+import QR_codeGenerator from './components/QR_codeGenerator';
+import QRCodeScanner from './components/QRCodeScanner';
+
 
 function App() {
-  
-    const [textQR, setTextQR] = useState('');
-  
-    const handleInputChange = (e) => {
-      setTextQR(e.target.value);
-    };
-  
+  const [scannedResult, setScannedResult] = useState('');
+
+  const handleScan = (result) => {
+    setScannedResult(result);
+  };
 
   return (
     <>
       <div className='div_cont'>
-        <p>Lector de QR</p>
-        
-      </div>
-   
-    <div className='div_cont'>
-      <label htmlFor="text-input">Ingresa el texto:</label>
-      <input
-        type="text"
-        id="text-input"
-        value={textQR}
-        onChange={handleInputChange}
-      />
-      <p></p>
-      {setTextQR && <QRCode value={textQR} size={300} />}
+      <h1>QR Code Scanner</h1>
+      <QRCodeScanner  />
+      {scannedResult && <p>Scanned Result: {scannedResult}</p>}
     </div>
+      <div className='div_cont'>
+        <QR_codeGenerator />
+      </div>
     </>
   )
 }
