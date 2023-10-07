@@ -23,11 +23,11 @@ mongoose
   });
 
 // Utils
-app.use(express.static(__dirname + "/../public"));
+// app.use(express.static(__dirname + "/../public"));
 //
 
 app.use("/api/visitantes", visitantesRouter);
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server listening on port 8080");
 });
