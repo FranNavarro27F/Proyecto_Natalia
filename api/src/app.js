@@ -25,6 +25,13 @@ mongoose
 // Utils
 // app.use(express.static(__dirname + "/../public"));
 //
+app.use("/", (req, res, next)=> {
+  try {
+    res.json({msj: "Hello World !!!", status: "Succsess" });
+  } catch (e) {
+    res.send(e.message);
+  }
+});
 
 app.use("/api/visitantes", visitantesRouter);
 
