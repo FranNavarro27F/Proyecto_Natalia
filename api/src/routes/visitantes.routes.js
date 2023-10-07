@@ -1,12 +1,15 @@
 import { Router } from "express";
 import visitanteModel from "../models/Visitante.model.js";
-import { PostVisitante }   from "../controllers/visitantes.controller.js";
+import { GetVisitantes, PostVisitante }   from "../controllers/visitantes.controller.js";
 
 const visitantesRouter = Router();
 
 visitantesRouter.get("/", async (req, res) => {
   try {
-    const visitantes = await visitanteModel.res.json(visitantes);
+    const visitantesEnDB= await GetVisitantes();
+      res.send({ status: "ok", payload: visitantesEnDB });
+     
+    
   } catch (e) {
     res.status(500).send({ status: "error", payload: e.message });
   }
