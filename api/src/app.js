@@ -6,8 +6,6 @@ import visitantesRouter from "./routes/visitantes.routes.js";
 dotenv.config();
 // import studentRouter from "./routes/student.routes.js";
 const { MONGO_ATLAS_PASSWORD } = process.env;
-console.log(MONGO_ATLAS_PASSWORD)
-
 
 const app = express();
 
@@ -25,6 +23,13 @@ mongoose
 // Utils
 // app.use(express.static(__dirname + "/../public"));
 //
+app.use("/", (req, res, next) => {
+  try {
+    res.json({ msj: "Hello World !!!", status: "Succsess" });
+  } catch (e) {
+    res.send(e.message);
+  }
+});
 
 app.use("/api/visitantes", visitantesRouter);
 
